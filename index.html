@@ -164,60 +164,118 @@
         <div class="card"><p>Max Players: 20</p></div>
     </div>
 </section>
-    <!-- FAQ Section -->
-<section id="faq">
-    <h2>❓ Frequently Asked Questions</h2>
-    <div class="faq-container">
-        <div class="faq-item">
-            <button class="faq-question">🌍 What version is the server?</button>
-            <div class="faq-answer">
-                <p>Our server runs on <strong>Java Edition 1.21.11</strong> with PaperMC for optimal performance.</p>
-            </div>
-        </div>
+    <section id="faq">
+  <h2>❓ Frequently Asked Questions</h2>
 
-        <div class="faq-item">
-            <button class="faq-question">🛡️ What is Lifesteal?</button>
-            <div class="faq-answer">
-                <p>Lifesteal allows players to steal hearts from others during PvP. Your goal is to survive and grow stronger!</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">🎮 Can cracked players join?</button>
-            <div class="faq-answer">
-                <p>Yes! We support SKLauncher and other cracked clients, so you can play without a premium account.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">💰 How do I earn rewards?</button>
-            <div class="faq-answer">
-                <p>Players can earn rewards via daily login, PvP, quests, and completing objectives. Check the Store for redeemable items.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">📜 How to get whitelisted?</button>
-            <div class="faq-answer">
-                <p>Fill out the whitelist form in our <a href="#whitelisted">Whitelist Section</a>. Make sure your Minecraft username is correct.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">👑 Who are the staff?</button>
-            <div class="faq-answer">
-                <p>Our team consists of AuroraEdge (Owner), coystygamingYT (Admin), and other trusted moderators. Respect them and follow their instructions.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">🛒 How does the store work?</button>
-            <div class="faq-answer">
-                <p>Purchase ranks, hearts, and exclusive perks via our store. You can use coins or in-game points to unlock special items.</p>
-            </div>
-        </div>
+  <div class="faq-item">
+    <button class="faq-question">How do I join the server?</button>
+    <div class="faq-answer">
+      <p>Copy the server IP: <strong>frostveill.falixsrv.me</strong> and add it in your Minecraft client.</p>
     </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Is the server cracked?</button>
+    <div class="faq-answer">
+      <p>Yes! Players using SKLauncher or premium Minecraft accounts can join.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">How do I earn hearts?</button>
+    <div class="faq-answer">
+      <p>Kill other players in PvP or complete server events to gain hearts.</p>
+    </div>
+  </div>
 </section>
+
+<style>
+/* FAQ Section */
+#faq {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+    color: white;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid #00ffcc;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.6);
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 15px 20px;
+    background: #111;
+    color: #00ffcc;
+    border: none;
+    text-align: left;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question.active {
+    background: #00ffcc;
+    color: black;
+}
+
+.faq-question::after {
+    content: "+";
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.faq-question.active::after {
+    content: "-";
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    background: rgba(0,0,0,0.5);
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-answer p {
+    padding: 10px 0;
+    margin: 0;
+}
+</style>
+
+<script>
+// FAQ Accordion JS
+window.addEventListener("load", () => {
+    const faqButtons = document.querySelectorAll(".faq-question");
+
+    faqButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const answer = button.nextElementSibling;
+
+            if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
+                answer.style.maxHeight = null;
+                button.classList.remove("active");
+            } else {
+                document.querySelectorAll(".faq-answer").forEach(a => {
+                    a.style.maxHeight = null;
+                    if(a.previousElementSibling) a.previousElementSibling.classList.remove("active");
+                });
+
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                button.classList.add("active");
+            }
+        });
+    });
+});
+</script>
     <section id="contact">
   <h2>📬 Contact / Support</h2>
   <p>If you have questions, bugs, or need help, send us a message!</p>
