@@ -367,3 +367,8 @@ footer div:first-child {
     color: #00ffcc;
     margin-top: 10px;
 }
+
+#countdown {text-align:center; padding:80px 20px; background:rgba(0,0,0,0.6); border:2px solid #00ffcc; border-radius:15px; margin:40px auto; max-width:600px;}
+#timer {font-size:2em; font-weight:bold; margin-top:15px; color:#00ffcc;}
+#edit-timer input {padding:8px; border-radius:5px; border:1px solid #00ffcc; margin-right:10px;}
+#edit-timer button:hover {transform:scale(1.05);}
