@@ -97,3 +97,28 @@ function updateLeaderboard(){
 // Initial render
 renderLeaderboard();
 renderInputs();b
+
+const contactForm = document.getElementById('contact-form');
+const contactStatus = document.getElementById('contact-status');
+
+contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(contactForm);
+
+    fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            contactStatus.textContent = "✅ Message sent!";
+            contactForm.reset();
+        } else {
+            contactStatus.textContent = "❌ Failed to send. Try again.";
+        }
+    }).catch(() => {
+        contactStatus.textContent = "❌ Failed to send. Check your connection.";
+    });
+});
