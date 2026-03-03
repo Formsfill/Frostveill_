@@ -433,16 +433,6 @@ footer div:first-child {
     background: white;
     transform: scale(1.05);
 }
-/* FAQ Styles */
-#faq {
-    padding: 120px 20px;
-    text-align: center;
-}
-.faq-container {
-    max-width: 800px;
-    margin: 40px auto;
-    text-align: left;
-}
 .faq-item {
     margin-bottom: 15px;
     border: 1px solid #00ffcc;
@@ -450,6 +440,7 @@ footer div:first-child {
     overflow: hidden;
     background: rgba(0,0,0,0.7);
 }
+
 .faq-question {
     width: 100%;
     padding: 15px 20px;
@@ -461,19 +452,39 @@ footer div:first-child {
     cursor: pointer;
     outline: none;
     transition: 0.3s;
+    position: relative;
 }
+
 .faq-question:hover {
     background: rgba(0,255,204,0.1);
     color:white;
 }
+
+.faq-question::after {
+    content: "+";
+    position: absolute;
+    right: 20px;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.faq-question.active::after {
+    content: "-";
+}
+
 .faq-answer {
     max-height: 0;
     overflow: hidden;
     padding: 0 20px;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease, padding 0.3s ease;
 }
+
+.faq-question.active + .faq-answer {
+    padding: 15px 20px;
+}
+
 .faq-answer p {
-    padding: 15px 0;
-    color: #fff;
-    margin:0;
+    padding: 0;
+    margin: 0;
+    color: white;
 }
