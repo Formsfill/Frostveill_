@@ -375,43 +375,53 @@ footer div:first-child {
 #edit-timer button:hover {transform:scale(1.05);}
 
 #whitelisted {
-    padding: 80px 20px;
+    padding: 100px 20px;
     text-align: center;
-    background: rgba(0,0,0,0.6);
-    border: 2px solid #00ffcc;
-    border-radius: 15px;
-    max-width: 600px;
-    margin: 40px auto;
 }
 
 #whitelisted h2 {
     color: #00ffcc;
-    font-size: 2.5em;
-    margin-bottom: 15px;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-#whitelisted form {
+#whitelisted p {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+#whitelist-form {
+    max-width: 700px;
+    margin: auto;
+}
+
+.form-group {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 15px;
+    margin-bottom: 15px;
 }
 
 #whitelisted input,
 #whitelisted textarea {
-    padding: 12px;
-    border-radius: 8px;
-    border: 2px solid #00ffcc;
-    background: #111;
-    color: white;
-    font-size: 1em;
     width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid #00ffcc;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 1rem;
+}
+
+#whitelisted textarea {
+    height: 120px;
+    resize: none;
+    margin-bottom: 15px;
 }
 
 #whitelisted button {
-    padding: 12px 25px;
+    padding: 14px 30px;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     background: #00ffcc;
     color: black;
     font-weight: bold;
@@ -422,10 +432,4 @@ footer div:first-child {
 #whitelisted button:hover {
     background: white;
     transform: scale(1.05);
-}
-
-#whitelisted-status {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #00ffcc;
 }
