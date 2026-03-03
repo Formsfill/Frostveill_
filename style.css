@@ -368,7 +368,44 @@ footer div:first-child {
     margin-top: 10px;
 }
 
-#countdown {text-align:center; padding:80px 20px; background:rgba(0,0,0,0.6); border:2px solid #00ffcc; border-radius:15px; margin:40px auto; max-width:600px;}
-#timer {font-size:2em; font-weight:bold; margin-top:15px; color:#00ffcc;}
-#edit-timer input {padding:8px; border-radius:5px; border:1px solid #00ffcc; margin-right:10px;}
-#edit-timer button:hover {transform:scale(1.05);}
+.countdown-box {
+  background: #222;
+  border: 2px solid #00ffcc;
+  border-radius: 12px;
+  padding: 15px 25px;
+  text-align: center;
+  width: 260px;
+  margin: 20px auto;
+}
+
+.countdown-box .label {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.countdown-box .timer {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.countdown-box input {
+  padding: 5px;
+  border-radius: 6px;
+  margin-right: 5px;
+  border: 1px solid #00ffcc;
+  background: #111;
+  color: white;
+}
+
+.countdown-box button {
+  padding: 5px 10px;
+  background: #00ffcc;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.countdown-box button:hover {
+  background: #00dddd;
+}
