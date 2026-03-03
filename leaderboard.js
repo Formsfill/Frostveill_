@@ -122,46 +122,42 @@ contactForm.addEventListener('submit', function(e) {
         contactStatus.textContent = "❌ Failed to send. Check your connection.";
     });
 });
-// ============================
-// Countdown Timer
-// ============================
+// Default countdown target
+let targetTime = new Date("2026-03-10T18:00:00").getTime();
 
-// Default target date
-let countdownDate = new Date(localStorage.getItem('countdownDate')) || new Date("2026-03-10T18:00:00");
-
-// Show admin input if ?edit=true
-if(window.location.search.includes('edit=true')){
-    document.getElementById('edit-timer').style.display = 'block';
+// Show edit box only if ?edit=true is in URL
+const editDiv = document.getElementById("edit-timer");
+if (!window.location.search.includes("edit=true")) {
+  editDiv.style.display = "none";
 }
 
-// Update countdown every second
-function updateCountdownDisplay(){
-    const now = new Date();
-    const diff = countdownDate - now;
+const timerEl = document.getElementById("timer");
+const updateBtn = document.getElementById("update-btn");
 
-    if(diff <= 0){
-        document.getElementById('timer').innerHTML = "🚀 Event Started!";
-        return;
-    }
+updateBtn.addEventListener("click", () => {
+  const input = document.getElementById("new-time").value;
+  if (input) {
+    targetTime = new Date(input).getTime();
+  }
+});
 
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((diff % (1000*60)) / 1000);
+function updateTimer() {
+  const now = new Date().getTime();
+  const distance = targetTime - now;
 
-    document.getElementById('days').textContent = String(days).padStart(2,'0');
-    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+  if (distance <= 0) {
+    timerEl.innerHTML = "Event Started!";
+    clearInterval(interval);
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  timerEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
-setInterval(updateCountdownDisplay, 1000);
-updateCountdownDisplay();
 
-// Update countdown from admin input
-function updateCountdown(){
-    const input = document.getElementById('new-timer').value;
-    if(!input) return alert("Select a valid date & time!");
-    countdownDate = new Date(input);
-    localStorage.setItem('countdownDate', countdownDate);
-    alert("Countdown updated!");
-}
+const interval = setInterval(updateTimer, 1000);
+updateTimer();
