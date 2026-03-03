@@ -368,44 +368,55 @@ footer div:first-child {
     margin-top: 10px;
 }
 
-.countdown-box {
-  background: #222;
-  border: 2px solid #00ffcc;
-  border-radius: 12px;
-  padding: 15px 25px;
+#countdown {
   text-align: center;
-  width: 260px;
-  margin: 20px auto;
+  margin: 15px 0;
 }
 
-.countdown-box .label {
-  font-size: 1.2em;
-  margin-bottom: 8px;
-}
-
-.countdown-box .timer {
-  font-size: 1.6em;
+.countdown-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #111;
+  border: 2px solid #00ffcc;
+  border-radius: 8px;
+  padding: 8px 15px;
   font-weight: bold;
 }
 
-.countdown-box input {
-  padding: 5px;
-  border-radius: 6px;
-  margin-right: 5px;
+.countdown-box .label {
+  font-size: 0.9em;
+  color: #00ffcc;
+}
+
+.countdown-box .timer {
+  font-size: 1.1em;
+}
+
+#edit-timer {
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+#edit-timer input {
+  padding: 4px;
+  border-radius: 5px;
   border: 1px solid #00ffcc;
   background: #111;
   color: white;
 }
 
-.countdown-box button {
-  padding: 5px 10px;
+#edit-timer button {
+  padding: 4px 8px;
+  border-radius: 5px;
   background: #00ffcc;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
 }
 
-.countdown-box button:hover {
+#edit-timer button:hover {
   background: #00dddd;
 }
