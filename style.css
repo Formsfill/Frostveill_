@@ -368,70 +368,8 @@ footer div:first-child {
     margin-top: 10px;
 }
 
-#countdown {
-  text-align: center;
-  margin: 30px 0;
-}
 
-.countdown-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  background: linear-gradient(135deg, #00ffcc, #0066ff);
-  border-radius: 15px;
-  padding: 12px 25px;
-  font-weight: bold;
-  color: black;
-  box-shadow: 0 0 20px rgba(0,255,204,0.5);
-  font-family: 'Arial Black', sans-serif;
-  flex-wrap: wrap;
-}
-
-.countdown-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.countdown-box .label {
-  font-size: 1em;
-  color: #fff;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px black;
-}
-
-.countdown-box .timer {
-  font-size: 1.3em;
-  font-weight: bolder;
-  color: #ffeb3b;
-  text-shadow: 2px 2px 4px #000;
-  margin-top: 5px;
-}
-
-#edit-timer {
-  display: flex;
-  gap: 5px;
-}
-
-#edit-timer input {
-  padding: 6px 8px;
-  border-radius: 5px;
-  border: none;
-  font-weight: bold;
-}
-
-#edit-timer button {
-  padding: 6px 10px;
-  border-radius: 5px;
-  background: #ffeb3b;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  color: black;
-  transition: 0.3s;
-}
-
-#edit-timer button:hover {
-  background: #ffc107;
-}
+#countdown {text-align:center; padding:80px 20px; background:rgba(0,0,0,0.6); border:2px solid #00ffcc; border-radius:15px; margin:40px auto; max-width:600px;}
+#timer {font-size:2em; font-weight:bold; margin-top:15px; color:#00ffcc;}
+#edit-timer input {padding:8px; border-radius:5px; border:1px solid #00ffcc; margin-right:10px;}
+#edit-timer button:hover {transform:scale(1.05);}
