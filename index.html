@@ -68,22 +68,30 @@
         <div class="card"><h3>🌍 Cracked Support</h3><p>Supports SKLauncher players.</p></div>
         <div class="card"><h3>📦 Custom Plugins</h3><p>Unique gameplay systems.</p></div>
     </div>
-</section>
-    <section id="countdown">
-  <h2>⏳ Next Event / Season Starts In</h2>
-  <div id="timer">
-    <span id="days">00</span>d :
-    <span id="hours">00</span>h :
-    <span id="minutes">00</span>m :
-    <span id="seconds">00</span>s
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <link rel="stylesheet" href="countdown.css">
+</head>
+<body>
 
-  <!-- Admin Only: Change Timer -->
-  <div id="edit-timer" style="display:none; margin-top:15px;">
-    <input type="datetime-local" id="new-timer" />
-    <button onclick="updateCountdown()" style="padding:5px 10px; background:#00ffcc; color:black; border:none; border-radius:5px; cursor:pointer;">Update Timer</button>
+<section id="countdown">
+  <div class="countdown-box">
+    <div class="label">Next Event / Season Starts In:</div>
+    <div id="timer" class="timer">00d 00h 00m 00s</div>
+
+    <!-- Secret edit mode -->
+    <div id="edit-timer">
+      <input type="datetime-local" id="new-time">
+      <button id="update-btn">Update Timer</button>
+    </div>
   </div>
 </section>
+
+
     
 <!-- Rules Section -->
 <section id="rules">
