@@ -122,42 +122,48 @@ contactForm.addEventListener('submit', function(e) {
         contactStatus.textContent = "❌ Failed to send. Check your connection.";
     });
 });
-// Default countdown target
-let targetTime = new Date("2026-03-10T18:00:00").getTime();
+document.addEventListener("DOMContentLoaded", function() {
 
-// Show edit box only if ?edit=true is in URL
-const editDiv = document.getElementById("edit-timer");
-if (!window.location.search.includes("edit=true")) {
-  editDiv.style.display = "none";
-}
+  // Default countdown target
+  let targetTime = new Date("2026-03-10T18:00:00").getTime();
 
-const timerEl = document.getElementById("timer");
-const updateBtn = document.getElementById("update-btn");
+  const timerEl = document.getElementById("timer");
+  const editDiv = document.getElementById("edit-timer");
+  const updateBtn = document.getElementById("update-btn");
+  const inputField = document.getElementById("new-time");
 
-updateBtn.addEventListener("click", () => {
-  const input = document.getElementById("new-time").value;
-  if (input) {
-    targetTime = new Date(input).getTime();
+  // Show edit box only if ?edit=true is in URL
+  if (!window.location.search.includes("edit=true")) {
+    editDiv.style.display = "none";
   }
+
+  // Update target time when button clicked
+  updateBtn.addEventListener("click", () => {
+    const input = inputField.value;
+    if (input) {
+      targetTime = new Date(input).getTime();
+    }
+  });
+
+  function updateTimer() {
+    const now = new Date().getTime();
+    const distance = targetTime - now;
+
+    if (distance <= 0) {
+      timerEl.innerHTML = "Event Started!";
+      clearInterval(interval);
+      return;
+    }
+
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+    timerEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  const interval = setInterval(updateTimer, 1000);
+  updateTimer();
+
 });
-
-function updateTimer() {
-  const now = new Date().getTime();
-  const distance = targetTime - now;
-
-  if (distance <= 0) {
-    timerEl.innerHTML = "Event Started!";
-    clearInterval(interval);
-    return;
-  }
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
-  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-  const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-  timerEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
-const interval = setInterval(updateTimer, 1000);
-updateTimer();
