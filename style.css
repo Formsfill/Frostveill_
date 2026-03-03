@@ -373,3 +373,59 @@ footer div:first-child {
 #timer {font-size:2em; font-weight:bold; margin-top:15px; color:#00ffcc;}
 #edit-timer input {padding:8px; border-radius:5px; border:1px solid #00ffcc; margin-right:10px;}
 #edit-timer button:hover {transform:scale(1.05);}
+
+#whitelisted {
+    padding: 80px 20px;
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    border: 2px solid #00ffcc;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+#whitelisted h2 {
+    color: #00ffcc;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+#whitelisted form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#whitelisted input,
+#whitelisted textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #00ffcc;
+    background: #111;
+    color: white;
+    font-size: 1em;
+    width: 100%;
+}
+
+#whitelisted button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #00ffcc;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#whitelisted button:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+#whitelisted-status {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #00ffcc;
+}
