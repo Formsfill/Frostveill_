@@ -124,7 +124,9 @@ contactForm.addEventListener('submit', function(e) {
 });
 document.addEventListener("DOMContentLoaded", function() {
 
-  // Default countdown target
+document.addEventListener("DOMContentLoaded", function() {
+
+  // Default countdown target (can be updated via edit mode)
   let targetTime = new Date("2026-03-10T18:00:00").getTime();
 
   const timerEl = document.getElementById("timer");
@@ -132,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const updateBtn = document.getElementById("update-btn");
   const inputField = document.getElementById("new-time");
 
-  // Show edit box only if ?edit=true is in URL
+  // Show edit only if ?edit=true in URL
   if (!window.location.search.includes("edit=true")) {
     editDiv.style.display = "none";
   }
@@ -145,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
+  // Countdown function
   function updateTimer() {
     const now = new Date().getTime();
     const distance = targetTime - now;
