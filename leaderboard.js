@@ -124,7 +124,7 @@ contactForm.addEventListener('submit', function(e) {
 });
 document.addEventListener("DOMContentLoaded", function() {
 
-document.addEventListener("DOMContentLoaded", function() {
+
 
   // Default countdown target (can be updated via edit mode)
   let targetTime = new Date("2026-03-10T18:00:00").getTime();
@@ -134,18 +134,23 @@ document.addEventListener("DOMContentLoaded", function() {
   const updateBtn = document.getElementById("update-btn");
   const inputField = document.getElementById("new-time");
 
-  // Show edit only if ?edit=true in URL
-  if (!window.location.search.includes("edit=true")) {
-    editDiv.style.display = "none";
+  // Only enable edit if ?edit=true in URL
+  const isEditMode = window.location.search.includes("edit=true");
+
+  if (!isEditMode) {
+    // Remove the edit div completely for public
+    editDiv.remove();
   }
 
-  // Update target time when button clicked
-  updateBtn.addEventListener("click", () => {
-    const input = inputField.value;
-    if (input) {
-      targetTime = new Date(input).getTime();
-    }
-  });
+  // Only attach event if in edit mode
+  if (isEditMode) {
+    updateBtn.addEventListener("click", () => {
+      const input = inputField.value;
+      if (input) {
+        targetTime = new Date(input).getTime();
+      }
+    });
+  }
 
   // Countdown function
   function updateTimer() {
