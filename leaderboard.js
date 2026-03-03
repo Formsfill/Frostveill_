@@ -122,56 +122,51 @@ contactForm.addEventListener('submit', function(e) {
         contactStatus.textContent = "❌ Failed to send. Check your connection.";
     });
 });
-document.addEventListener("DOMContentLoaded", function() {
+// ============================
+// Countdown Timer
+// ============================
 
+// Load countdown date from localStorage or use default
+let storedDate = localStorage.getItem('countdownDate');
+let countdownDate = storedDate ? new Date(storedDate) : new Date("2026-03-10T18:00:00");
 
+// Show admin input if ?edit=true
+if(window.location.search.includes('edit=true')){
+    document.getElementById('edit-timer').style.display = 'block';
+}
 
-  // Default countdown target (can be updated via edit mode)
-  let targetTime = new Date("2026-03-10T18:00:00").getTime();
+// Update countdown every second
+function updateCountdownDisplay(){
+    if(!countdownDate || isNaN(countdownDate.getTime())) return;
+    const now = new Date();
+    const diff = countdownDate - now;
 
-  const timerEl = document.getElementById("timer");
-  const editDiv = document.getElementById("edit-timer");
-  const updateBtn = document.getElementById("update-btn");
-  const inputField = document.getElementById("new-time");
-
-  // Only enable edit if ?edit=true in URL
-  const isEditMode = window.location.search.includes("edit=true");
-
-  if (!isEditMode) {
-    // Remove the edit div completely for public
-    editDiv.remove();
-  }
-
-  // Only attach event if in edit mode
-  if (isEditMode) {
-    updateBtn.addEventListener("click", () => {
-      const input = inputField.value;
-      if (input) {
-        targetTime = new Date(input).getTime();
-      }
-    });
-  }
-
-  // Countdown function
-  function updateTimer() {
-    const now = new Date().getTime();
-    const distance = targetTime - now;
-
-    if (distance <= 0) {
-      timerEl.innerHTML = "Event Started!";
-      clearInterval(interval);
-      return;
+    if(diff <= 0){
+        document.getElementById('timer').textContent = "🚀 Event Started!";
+        return;
     }
 
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((diff % (1000*60)) / 1000);
 
-    timerEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
+    document.getElementById('days').textContent = String(days).padStart(2,'0');
+    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+}
 
-  const interval = setInterval(updateTimer, 1000);
-  updateTimer();
+// Update countdown from admin input
+function updateCountdown(){
+    const input = document.getElementById('new-timer').value;
+    if(!input) return alert("Select a valid date & time!");
+    countdownDate = new Date(input);
+    if(isNaN(countdownDate.getTime())) return alert("Invalid date!");
+    localStorage.setItem('countdownDate', countdownDate);
+    alert("Countdown updated!");
+}
 
-});
+// Start the timer
+updateCountdownDisplay();
+setInterval(updateCountdownDisplay, 1000);
