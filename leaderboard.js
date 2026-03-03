@@ -188,3 +188,22 @@ function updateCountdown(){
 // Start the timer
 updateCountdownDisplay();
 setInterval(updateCountdownDisplay, 1000);
+// FAQ Accordion Functionality
+const faqButtons = document.querySelectorAll(".faq-question");
+
+faqButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const answer = button.nextElementSibling;
+        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== "0px";
+
+        // Close all other answers
+        document.querySelectorAll(".faq-answer").forEach(a => a.style.maxHeight = null);
+
+        // Toggle current answer
+        if (!isOpen) {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+        } else {
+            answer.style.maxHeight = null;
+        }
+    });
+});
