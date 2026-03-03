@@ -188,22 +188,33 @@ function updateCountdown(){
 // Start the timer
 updateCountdownDisplay();
 setInterval(updateCountdownDisplay, 1000);
-// FAQ Accordion Functionality
-const faqButtons = document.querySelectorAll(".faq-question");
+// ============================
+// FAQ Accordion (Corrected)
+// ============================
 
-faqButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const answer = button.nextElementSibling;
-        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== "0px";
+// Wait until the page fully loads
+window.addEventListener("load", () => {
+    const faqButtons = document.querySelectorAll(".faq-question");
 
-        // Close all other answers
-        document.querySelectorAll(".faq-answer").forEach(a => a.style.maxHeight = null);
+    faqButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const answer = button.nextElementSibling;
 
-        // Toggle current answer
-        if (!isOpen) {
-            answer.style.maxHeight = answer.scrollHeight + "px";
-        } else {
-            answer.style.maxHeight = null;
-        }
+            // If answer is already open, close it
+            if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
+                answer.style.maxHeight = null;
+                button.classList.remove("active");
+            } else {
+                // Close all other answers
+                document.querySelectorAll(".faq-answer").forEach(a => {
+                    a.style.maxHeight = null;
+                    if(a.previousElementSibling) a.previousElementSibling.classList.remove("active");
+                });
+
+                // Open this answer
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                button.classList.add("active");
+            }
+        });
     });
 });
