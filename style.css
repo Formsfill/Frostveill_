@@ -433,3 +433,47 @@ footer div:first-child {
     background: white;
     transform: scale(1.05);
 }
+/* FAQ Styles */
+#faq {
+    padding: 120px 20px;
+    text-align: center;
+}
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: left;
+}
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid #00ffcc;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.7);
+}
+.faq-question {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(0,0,0,0.85);
+    color: #00ffcc;
+    font-weight: bold;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+}
+.faq-question:hover {
+    background: rgba(0,255,204,0.1);
+    color:white;
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    transition: max-height 0.3s ease;
+}
+.faq-answer p {
+    padding: 15px 0;
+    color: #fff;
+    margin:0;
+}
