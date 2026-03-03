@@ -122,3 +122,46 @@ contactForm.addEventListener('submit', function(e) {
         contactStatus.textContent = "❌ Failed to send. Check your connection.";
     });
 });
+// ============================
+// Countdown Timer
+// ============================
+
+// Default target date
+let countdownDate = new Date(localStorage.getItem('countdownDate')) || new Date("2026-03-10T18:00:00");
+
+// Show admin input if ?edit=true
+if(window.location.search.includes('edit=true')){
+    document.getElementById('edit-timer').style.display = 'block';
+}
+
+// Update countdown every second
+function updateCountdownDisplay(){
+    const now = new Date();
+    const diff = countdownDate - now;
+
+    if(diff <= 0){
+        document.getElementById('timer').innerHTML = "🚀 Event Started!";
+        return;
+    }
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((diff % (1000*60)) / 1000);
+
+    document.getElementById('days').textContent = String(days).padStart(2,'0');
+    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+}
+setInterval(updateCountdownDisplay, 1000);
+updateCountdownDisplay();
+
+// Update countdown from admin input
+function updateCountdown(){
+    const input = document.getElementById('new-timer').value;
+    if(!input) return alert("Select a valid date & time!");
+    countdownDate = new Date(input);
+    localStorage.setItem('countdownDate', countdownDate);
+    alert("Countdown updated!");
+}
