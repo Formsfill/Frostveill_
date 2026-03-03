@@ -1,173 +1,187 @@
-// ============================
-// Hamburger Menu
-// ============================
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FrostVeil Lifesteal SMP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+        body {font-family:Arial,sans-serif;background:linear-gradient(-45deg,#000,#0f2027,#1a1a1a,#203a43);background-size:400% 400%;animation:gradientBG 15s ease infinite;color:white;}
+        @keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        nav{background:rgba(0,0,0,0.8);padding:15px;text-align:center;position:fixed;width:100%;top:0;z-index:1000;}
+        nav a{color:#00ffcc;margin:0 15px;text-decoration:none;font-weight:bold;transition:0.3s;}
+        nav a:hover{color:white;}
+        header{text-align:center;padding:150px 20px 100px;}
+        h1{font-size:3em;color:#00ffcc;}
+        .ip-box{margin-top:25px;padding:15px;background:#111;border:2px solid #00ffcc;display:inline-block;border-radius:10px;cursor:pointer;font-weight:bold;}
+        .btn{display:inline-block;margin:15px;padding:12px 30px;background:#00ffcc;color:black;text-decoration:none;border-radius:25px;font-weight:bold;transition:0.3s;}
+        .btn:hover{background:white;transform:scale(1.05);}
+        section{padding:120px 20px;text-align:center;}
+        .cards{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin-top:40px;}
+        .card{background:rgba(0,0,0,0.7);padding:25px;width:250px;border-radius:15px;border:1px solid #00ffcc;transition:0.3s;}
+        .card:hover{transform:translateY(-10px);}
+        iframe{border-radius:15px;max-width:100%;}
+        footer{background:black;padding:30px;text-align:center;opacity:0.6;}
+        #server-status{margin-top:15px;font-weight:bold;}
+    </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
 
-// ============================
-// Copy Server IP
-// ============================
-function copyIP(){
-    navigator.clipboard.writeText("frostveill.falixsrv.me");
-    alert("Server IP Copied!");
-}
+<!-- Navigation Menu -->
+<nav>
+  <div class="nav-container">
+    <div class="hamburger" id="hamburger">☰</div>
+    <div class="nav-links" id="nav-links">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#rules">Rules</a>
+      <a href="#staff">Staff</a>
+      <a href="#whitelist">Whitelist</a>
+      <a href="#store">Store</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#server-details">Server Details</a>
+    </div>
+    <div class="nav-logo">❄ FrostVeil SMP ❄</div>
+  </div>
+</nav>
 
-// ============================
-// Live Server Status
-// ============================
-fetch("https://api.mcsrvstat.us/2/frostveill.falixsrv.me")
-.then(res => res.json())
-.then(data => {
-    const status = document.getElementById("server-status");
-    if(data.online){
-        status.innerHTML = `🟢 Server Online | Players: ${data.players.online}/${data.players.max}`;
-    } else {
-        status.innerHTML = "🔴 Server Offline";
-    }
-});
+<!-- Header -->
+<header id="home">
+    <h1>❄ FrostVeil Lifesteal SMP ❄</h1>
+    <p>Season 1 Live Now!</p>
 
-// ============================
-// Leaderboard + Private Edit Mode
-// ============================
-let defaultPlayers = [
-  {name: "DragonSlayer", hearts: 25},
-  {name: "FrostKing", hearts: 22},
-  {name: "ShadowNinja", hearts: 18},
-  {name: "NightWalker", hearts: 15},
-  {name: "BladeMaster", hearts: 12}
-];
+    <div class="ip-box" onclick="copyIP()">IP: frostveill.falixsrv.me (Click to Copy)</div>
+    <p id="server-status">Checking server status...</p>
 
-const cardsContainer = document.getElementById("top-players-cards");
-const inputsContainer = document.getElementById("player-inputs");
-const editContainer = document.getElementById("edit-leaderboard");
+    <a href="https://discord.gg/9aC4WwPx7c" target="_blank" class="btn">Join Discord</a>
+    <a href="YOUR_VOTE_LINK_" target="_blank" class="btn">Vote Server</a>
+    
+</header>
 
-// Load leaderboard from LocalStorage if exists
-let players = JSON.parse(localStorage.getItem('myLeaderboard')) || defaultPlayers;
+<!-- Features Section -->
+<section id="features">
+    <h2>⚔ Server Features</h2>
+    <div class="cards">
+        <div class="card"><h3>❤️ Lifesteal</h3><p>Kill players to steal hearts.</p></div>
+        <div class="card"><h3>🏰 Clans</h3><p>Create teams and dominate.</p></div>
+        <div class="card"><h3>🌍 Cracked Support</h3><p>Supports SKLauncher players.</p></div>
+        <div class="card"><h3>📦 Custom Plugins</h3><p>Unique gameplay systems.</p></div>
+    </div>
+</section>
+    <section id="countdown">
+  <h2>⏳ Next Event / Season Starts In</h2>
+  <div id="timer">
+    <span id="days">00</span>d :
+    <span id="hours">00</span>h :
+    <span id="minutes">00</span>m :
+    <span id="seconds">00</span>s
+  </div>
 
-// Show edit inputs only if URL has ?edit=true
-if(window.location.search.includes('edit=true')){
-    editContainer.style.display = 'block';
-}
+  <!-- Admin Only: Change Timer -->
+  <div id="edit-timer" style="display:none; margin-top:15px;">
+    <input type="datetime-local" id="new-timer" />
+    <button onclick="updateCountdown()" style="padding:5px 10px; background:#00ffcc; color:black; border:none; border-radius:5px; cursor:pointer;">Update Timer</button>
+  </div>
+</section>
+    
 
-// Render leaderboard cards
-function renderLeaderboard(){
-    cardsContainer.innerHTML = '';
-    players.forEach((player,index)=>{
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `<p>#${index+1} ${player.name} ❤️ ${player.hearts}</p>`;
-        cardsContainer.appendChild(card);
-    });
-}
+<!-- Rules Section -->
+<section id="rules">
+    <h2>📜 Server Rules</h2>
+    <div class="cards">
+        <div class="card"><h3>🚫 No Hacking</h3><p>Using hacks, x-ray, auto-clicker or any unfair advantage is strictly banned.</p></div>
+        <div class="card"><h3>⚠ No Exploiting</h3><p>Do not abuse glitches or bugs. Report them to staff instead.</p></div>
+        <div class="card"><h3>🤝 Respect Players</h3><p>No extreme toxicity, racism, or harassment.</p></div>
+        <div class="card"><h3>👮 Respect Staff</h3><p>Staff decisions are final. Do not argue in public chat.</p></div>
+    </div>
+</section>
 
-// Render editable inputs (admin only)
-function renderInputs(){
-    if(!editContainer) return;
-    inputsContainer.innerHTML = '';
-    players.forEach((player,index)=>{
-        const row = document.createElement('div');
-        row.style.margin='5px 0';
-        row.innerHTML=`
-            <input type="text" id="name-${index}" value="${player.name}" placeholder="Player Name">
-            <input type="number" id="hearts-${index}" value="${player.hearts}" placeholder="Hearts">
-        `;
-        inputsContainer.appendChild(row);
-    });
-}
+<!-- Staff Section -->
+<section id="staff">
+    <h2>👑 Staff Team</h2>
+    <div class="cards">
+        <div class="card"><h3>Owner</h3><p>AuroraEdge</p></div>
+        <div class="card"><h3>Admin</h3><p>CrimsonCrest</p></div>
+    </div>
+</section>
 
-// Update leaderboard from inputs
-function updateLeaderboard(){
-    players.forEach((player,index)=>{
-        const nameInput = document.getElementById(`name-${index}`);
-        const heartsInput = document.getElementById(`hearts-${index}`);
-        player.name = nameInput.value;
-        player.hearts = parseInt(heartsInput.value)||0;
-    });
-    localStorage.setItem('myLeaderboard', JSON.stringify(players));
-    renderLeaderboard();
-}
+<!-- Whitelist Section -->
+<section id="whitelist">
+    <h2>📝 Whitelist Application</h2>
+    <div class="cards">
+        <div class="card"><h3>Step 1</h3><p>Join our Discord server.</p></div>
+        <div class="card"><h3>Step 2</h3><p>Go to #whitelist-apply channel.</p></div>
+        <div class="card"><h3>Step 3</h3><p>Fill the application format and wait for approval.</p></div>
+    </div>
+</section>
 
-// Initial render
-renderLeaderboard();
-renderInputs();
+<!-- Store Section -->
+<section id="store">
+    <h2>🛒 Server Store</h2>
+    <div class="cards">
+        <div class="card"><h3>VIP Rank</h3><p>Exclusive perks & kits.</p></div>
+        <div class="card"><h3>Hearts Pack</h3><p>Buy extra hearts safely.</p></div>
+    </div>
+</section>
 
-// ============================
-// Contact Form
-// ============================
-const contactForm = document.getElementById('contact-form');
-const contactStatus = document.getElementById('contact-status');
 
-if(contactForm && contactStatus){
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(contactForm);
 
-        fetch(contactForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (response.ok) {
-                contactStatus.textContent = "✅ Message sent!";
-                contactForm.reset();
-            } else {
-                contactStatus.textContent = "❌ Failed to send. Try again.";
-            }
-        }).catch(() => {
-            contactStatus.textContent = "❌ Failed to send. Check your connection.";
-        });
-    });
-}
+<!-- Leaderboard Section -->
+<section id="leaderboard">
+    <h2>🏆 Top Players</h2>
+    <div id="top-players-cards" class="cards"></div>
 
-// ============================
-// Countdown Timer
-// ============================
+    <!-- Private edit inputs (hidden for everyone else) -->
+    <div id="edit-leaderboard" style="display:none; margin-top:20px;">
+        <h3>Edit Top Players (Private)</h3>
+        <div id="player-inputs"></div>
+        <button onclick="updateLeaderboard()" style="padding:8px 15px; background:#00ffcc; color:black; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">
+            Update Leaderboard
+        </button>
+    </div>
+</section>
+<section id="server-details">
+    <h2>📌 Server Details</h2>
+    <div class="cards">
+        <div class="card"><p>Type: Java Edition</p></div>
+        <div class="card"><p>Version: 1.21.11</p></div>
+        <div class="card"><p>PaperMC: Yes</p></div>
+        <div class="card"><p>Max Players: 20</p></div>
+    </div>
+</section>
+    <section id="contact">
+  <h2>📬 Contact / Support</h2>
+  <p>If you have questions, bugs, or need help, send us a message!</p>
+  
+  <form action="https://formspree.io/f/xkozpord" method="POST" id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+<div class="contact-buttons">
+    <button type="submit">Send Message</button>
+    <a href="https://discord.gg/9aC4WwPx7c" target="_blank" class="btn">Join Discord for Support</a>
+</div>
 
-// Load countdown date from localStorage or default
-let storedDate = localStorage.getItem('countdownDate');
-let countdownDate = storedDate ? new Date(storedDate) : new Date("2026-03-10T18:00:00");
 
-// Show admin input if ?edit=true
-if(window.location.search.includes('edit=true')){
-    document.getElementById('edit-timer').style.display = 'block';
-}
+</section>
+<footer>
+    <div style="margin-bottom:10px;">© 2026 FrostVeil SMP | Not affiliated with Mojang</div>
+    <div id="social-links">
+        <a href="https://www.youtube.com/@Football..NEWFIFA24" target="_blank" title="YouTube">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" class="social-icon">
+        </a>
+        <a href="https://www.instagram.com/palestine_humanity_" target="_blank" title="Instagram">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" class="social-icon">
+        </a>
+      
+    </div>
+</footer>
+<!-- Scripts -->
+<script>
+function copyIP(){navigator.clipboard.writeText("frostveill.falixsrv.me");alert("Server IP Copied!");}
 
-// Update countdown every second
-function updateCountdownDisplay(){
-    if(!countdownDate || isNaN(countdownDate.getTime())) return;
-    const now = new Date();
-    const diff = countdownDate - now;
-
-    if(diff <= 0){
-        document.getElementById('timer').textContent = "🚀 Event Started!";
-        return;
-    }
-
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((diff % (1000*60)) / 1000);
-
-    document.getElementById('days').textContent = String(days).padStart(2,'0');
-    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
-}
-
-// Update countdown from admin input
-function updateCountdown(){
-    const input = document.getElementById('new-timer').value;
-    if(!input) return alert("Select a valid date & time!");
-    countdownDate = new Date(input);
-    if(isNaN(countdownDate.getTime())) return alert("Invalid date!");
-    localStorage.setItem('countdownDate', countdownDate);
-    alert("Countdown updated!");
-}
-
-// Start timer
-updateCountdownDisplay();
-setInterval(updateCountdownDisplay, 1000);
+</script>
+  <script src="leaderboard.js"></script>
+</body>
+</html>
