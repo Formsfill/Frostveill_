@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrostVeil Lifesteal SMP - Tips & Tricks</title>
+<style>
+/* General Styles */
+* {margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+body {
+    font-family:Arial,sans-serif;
+    background:linear-gradient(-45deg,#000,#0f2027,#1a1a1a,#203a43);
+    background-size:400% 400%;
+    animation:gradientBG 15s ease infinite;
+    color:white;
+}
+@keyframes gradientBG{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* Navigation */
+nav{
+    background:rgba(0,0,0,0.8);
+    padding:15px;
+    text-align:center;
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:1000;
+}
+nav a{
+    color:#00ffcc;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+nav a:hover{color:white;}
+
+/* Header */
+header{
+    text-align:center;
+    padding:150px 20px 50px;
+}
+header h1{font-size:3em;color:#00ffcc;margin-bottom:10px;}
+header p{font-size:1.2em;
+  text-aliign:center;
+}
+
+/* FAQ / Tips Section */
+.faq-container{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-top:20px;
+    align-items:center;
+}
+.faq-item{
+    width:90%;
+    max-width:600px;
+    background:rgba(0,0,0,0.7);
+    border:2px solid #00ffcc;
+    border-radius:15px;
+    overflow:hidden;
+}
+.faq-question{
+    width:100%;
+    padding:15px 20px;
+    background:#111;
+    border:none;
+    color:#00ffcc;
+    text-align:left;
+    font-size:1.1em;
+    cursor:pointer;
+    font-weight:bold;
+    transition:background 0.3s;
+}
+.faq-question:hover{background:#222;}
+.faq-answer{
+    display:none;
+    padding:15px 20px;
+    color:white;
+    font-size:1em;
+    line-height:1.5;
+}
+
+/* Footer */
+footer{
+    background:black;
+    padding:30px;
+    text-align:center;
+    opacity:0.6;
+    margin-top:50px;
+}
+.btn{
+    display:inline-block;
+    margin:15px;
+    padding:12px 30px;
+    background:#00ffcc;
+    color:black;
+    text-decoration:none;
+    border-radius:25px;
+    font-weight:bold;
+    transition:0.3s;
+}
+.btn:hover{background:white;transform:scale(1.05);}
+</style>
+</head>
+<body>
+
+<!-- Navigation Menu -->
+<nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="frost.html">💡 Tips & Tricks</a>
+  <a href="base.html">🏰 Base Guide</a>
+  <a href="life.html">❤️ Lifesteal Guide</a>
+   <a href="craftingtip.html">📝 Crafting guide</a>
+    <a href="https://discord.gg/9aC4WwPx7c" target="_blank">💬 Discord</a>
+</nav>
+
+<!-- Header -->
+<header>
+    <h1>💡 Tips & Tricks for Beginners</h1>
+    <p>Master FrostVeil Lifesteal SMP with these essential beginner tips!</p>
+</header>
+
+<!-- Tips Section -->
+<section id="tips">
+    <h2 style="color:#00ffcc;"><center>⚔️ Survival & PvP Tips</center></h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <button class="faq-question">❤️ Steal Hearts Strategically</button>
+            <div class="faq-answer">
+                <p>Attack players only when you have an advantage. Avoid unnecessary fights early on.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">🏹 Gather Resources Quickly</button>
+            <div class="faq-answer">
+                <p>Focus on mining iron, diamonds, and weapons to survive PvP encounters.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">🏰 Join a Clan Early</button>
+            <div class="faq-answer">
+                <p>Clans give safety in numbers, buffs in PvP, and a social community.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">🛡️ Protect Your Base</button>
+            <div class="faq-answer">
+                <p>Build hidden or well-defended bases to survive longer and protect your hearts.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">🌍 Explore Carefully</button>
+            <div class="faq-answer">
+                <p>Always carry weapons and armor when exploring; you never know when another player might attack.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">💰 Use Rewards Wisely</button>
+            <div class="faq-answer">
+                <p>Spend earned coins on hearts, weapons, or gear that gives you a long-term advantage.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">🎯 Practice PvP Skills</button>
+            <div class="faq-answer">
+                <p>Learn strafing, bow shooting, and timing attacks to improve your combat efficiency.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">🔗 Stay in Discord</button>
+            <div class="faq-answer">
+                <p>Join our community to find clans, allies, and PvP events. Communication is key!</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">⚡ Quick Respawn</button>
+            <div class="faq-answer">
+                <p>Keep a bed or respawn point ready to get back into the action quickly.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">📦 Explore Plugins</button>
+            <div class="faq-answer">
+                <p>Check out custom plugins for unique gameplay advantages and strategies.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 FrostVeil SMP | Not affiliated with Mojang</p>
+    <a href="index.html" class="btn">Back to Home</a>
+</footer>
+
+<script>
+// Toggle answer display when clicking question
+const questions = document.querySelectorAll('.faq-question');
+questions.forEach(q => {
+    q.addEventListener('click', () => {
+        const answer = q.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    });
+});
+</script>
+
+</body>
+</html>
