@@ -164,22 +164,101 @@ section{
     margin-right:5px;
     width: calc(50% - 10px);
 }
-
-/* =======================
-   Server Status / Footer
-======================= */
-footer{
-    background:black;
-    padding:30px;
-    text-align:center;
-    opacity:0.6;
+footer {
+    width: 100%;
+    background: #111;
+    color: #f5f5f5;
+    padding: 40px 20px;
+    font-family: 'Minecraft', Arial, sans-serif;
+    text-align: center;  /* Centers everything inside the footer */
+    border-top: 3px solid #FFD700;
+    box-sizing: border-box;
 }
 
-#server-status{
-    margin-top:15px;
-    font-weight:bold;
+.footer-container {
+    width: 70%;       /* Text/content width */
+    margin: 0 auto;   /* Center container */
 }
 
+.footer-brand p {
+    margin: 5px 0 15px;
+    color: #ccc;
+}
+
+/* Quick Links */
+.footer-links a {
+    color: #f5f5f5;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #FFD700;
+    text-shadow: 1px 1px #000;
+}
+
+/* General social icons */
+.social-links {
+    width: 30px;      /* Default size */
+    height: 30px;
+    margin: 0 10px;
+    transition: transform 0.2s;
+}
+
+/* YouTube smaller */
+.youtube-links {
+    width: 100px;      
+    height: 34px;     /* keep square */
+}
+
+/* Center the social icons */
+#social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Hover effect */
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Legal & Policies */
+.footer-legal a {
+    color: #aaa;
+    text-decoration: none;
+    margin: 0 5px;
+    font-size: 0.9em;
+}
+
+.footer-legal a:hover {
+    color: #FFD700;
+}
+
+.footer-legal p {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .footer-container {
+        width: 90%;
+    }
+    .footer-links a {
+        display: block;
+        margin: 5px 0;
+    }
+    #social-links {
+        flex-direction: row;  /* Keeps horizontal but shrinks nicely */
+    }
+    .footer-legal a {
+        display: block;
+        margin: 3px 0;
+    }
+}
 /* =======================
    Leaderboard Cards
 ======================= */
@@ -265,67 +344,53 @@ footer{
         display: flex;
     }
 }
-
-    footer {
-    width: 100%;
-    background: #111;
-    color: #f5f5f5;
-    padding: 40px 20px;
-    font-family: 'Minecraft', Arial, sans-serif;
-    text-align: center;  /* Centers everything inside the footer */
-    border-top: 3px solid #FFD700;
-    box-sizing: border-box;
+/* =======================
+   Footer Styles
+======================= */
+footer {
+    display: flex;
+    justify-content: space-between; /* text left/center, icons right */
+    align-items: center;
+    padding: 15px 20px;
+    background: black;
+    opacity: 0.9;
+}
+footer div:first-child {
+    color: white;
+    font-size: 14px;          /* normal readable text size */
 }
 
-.footer-container {
-    width: 70%;       /* Text/content width */
-    margin: 0 auto;   /* Center container */
-}
-
-.footer-brand p {
-    margin: 5px 0 15px;
-    color: #ccc;
-}
-
-/* Quick Links */
-.footer-links a {
-    color: #f5f5f5;
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    color: #FFD700;
-    text-shadow: 1px 1px #000;
-}
-
-/* General social icons */
-.social-links {
-    width: 30px;      /* Default size */
-    height: 30px;
-    margin: 0 10px;
-    transition: transform 0.2s;
-}
-
-/* YouTube smaller */
-.youtube-links {
-    width: 100px;      
-    height: 34px;     /* keep square */
-}
-
-/* Center the social icons */
 #social-links {
     display: flex;
-    justify-content: center;
+    flex-direction: row;      /* horizontal icons */
+    gap: 20px;                /* space between icons (~0.5 cm) */
     align-items: center;
-    margin: 20px 0;
 }
 
-/* Hover effect */
-.social-icon:hover {
-    transform: scale(1.2);
+#social-links img {
+    height: 35px;             /* icon size */
+    width: auto;    
+    cursor: pointer;
+    transition: transform 0.3s;
 }
 
+#social-links img:hover {
+    transform: scale(1.1);    /* hover zoom effect */
+}
+
+/* Optional: responsive adjustment for mobile */
+@media screen and (max-width: 600px) {
+    footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #social-links {
+        gap: 8px;
+    }
+    #social-links img {
+        height: 30px;
+    }
+}
 #contact {
     padding: 100px 20px;
     text-align: center;
@@ -447,36 +512,26 @@ footer{
     background: white;
     transform: scale(1.05);
 }
-/* FAQ Section */
+/* FAQ Styles */
 #faq {
-    padding: 120px 30px;
-    max-width: 900px;
-    margin: auto;
+    padding: 120px 20px;
     text-align: center;
 }
-
-#faq h2 {
-    font-size: 2.8rem;
-    color: #00ffcc;
-    margin-bottom: 40px;
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: left;
 }
-
 .faq-item {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border: 1px solid #00ffcc;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     background: rgba(0,0,0,0.7);
-    transition: transform 0.3s;
 }
-
-.faq-item:hover {
-    transform: translateY(-5px);
-}
-
 .faq-question {
     width: 100%;
-    padding: 18px 25px;
+    padding: 15px 20px;
     background: rgba(0,0,0,0.85);
     color: #00ffcc;
     font-weight: bold;
@@ -484,38 +539,20 @@ footer{
     text-align: left;
     cursor: pointer;
     outline: none;
-    font-size: 1.1rem;
-    transition: background 0.3s, color 0.3s;
+    transition: 0.3s;
 }
-
 .faq-question:hover {
     background: rgba(0,255,204,0.1);
-    color: white;
+    color:white;
 }
-
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    padding: 0 25px;
-    transition: max-height 0.35s ease, padding 0.35s ease;
-    background: rgba(0,0,0,0.6);
+    padding: 0 20px;
+    transition: max-height 0.3s ease;
 }
-
 .faq-answer p {
-    padding: 20px 0;
+    padding: 10px 0;
     color: #fff;
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-/* Responsive for smaller devices */
-@media screen and (max-width: 600px) {
-    .faq-question {
-        font-size: 1rem;
-        padding: 15px 20px;
-    }
-    .faq-answer {
-        padding: 0 20px;
-    }
+    margin:0;
 }
