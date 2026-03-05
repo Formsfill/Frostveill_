@@ -265,53 +265,67 @@ footer{
         display: flex;
     }
 }
-/* =======================
-   Footer Styles
-======================= */
-footer {
-    display: flex;
-    justify-content: space-between; /* text left/center, icons right */
-    align-items: center;
-    padding: 15px 20px;
-    background: black;
-    opacity: 0.9;
-}
-footer div:first-child {
-    color: white;
-    font-size: 14px;          /* normal readable text size */
+
+    footer {
+    width: 100%;
+    background: #111;
+    color: #f5f5f5;
+    padding: 40px 20px;
+    font-family: 'Minecraft', Arial, sans-serif;
+    text-align: center;  /* Centers everything inside the footer */
+    border-top: 3px solid #FFD700;
+    box-sizing: border-box;
 }
 
+.footer-container {
+    width: 70%;       /* Text/content width */
+    margin: 0 auto;   /* Center container */
+}
+
+.footer-brand p {
+    margin: 5px 0 15px;
+    color: #ccc;
+}
+
+/* Quick Links */
+.footer-links a {
+    color: #f5f5f5;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #FFD700;
+    text-shadow: 1px 1px #000;
+}
+
+/* General social icons */
+.social-links {
+    width: 30px;      /* Default size */
+    height: 30px;
+    margin: 0 10px;
+    transition: transform 0.2s;
+}
+
+/* YouTube smaller */
+.youtube-links {
+    width: 100px;      
+    height: 34px;     /* keep square */
+}
+
+/* Center the social icons */
 #social-links {
     display: flex;
-    flex-direction: row;      /* horizontal icons */
-    gap: 20px;                /* space between icons (~0.5 cm) */
+    justify-content: center;
     align-items: center;
+    margin: 20px 0;
 }
 
-#social-links img {
-    height: 35px;             /* icon size */
-    width: auto;    
-    cursor: pointer;
-    transition: transform 0.3s;
+/* Hover effect */
+.social-icon:hover {
+    transform: scale(1.2);
 }
 
-#social-links img:hover {
-    transform: scale(1.1);    /* hover zoom effect */
-}
-
-/* Optional: responsive adjustment for mobile */
-@media screen and (max-width: 600px) {
-    footer {
-        flex-direction: column;
-        gap: 10px;
-    }
-    #social-links {
-        gap: 8px;
-    }
-    #social-links img {
-        height: 30px;
-    }
-}
 #contact {
     padding: 100px 20px;
     text-align: center;
